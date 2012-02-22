@@ -11,11 +11,11 @@
 
 
 (defn fizzbuzz-2[]
-  (defn divisible? [n x] (zero? (rem n x)))
   (defn mapTo [n]
-    (cond (divisible? n 15) "fizzbuzz"
-          (divisible? n 3) "fizz"
-          (divisible? n 5) "buzz"
+    (defn divisible? [x] (zero? (rem n x)))
+    (cond (divisible? 15) "fizzbuzz"
+          (divisible? 3) "fizz"
+          (divisible? 5) "buzz"
           :else n
           ))
   (dotimes [n 100]
