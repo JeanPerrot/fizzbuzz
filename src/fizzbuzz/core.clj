@@ -29,8 +29,7 @@
          (when (divisible? 5) "buzz")))
   (defn mapTo[n]
     (let [spec (special n)]
-      (if (empty? spec) n
-        spec)))
+      (if (empty? spec) n spec)))
   (dotimes [n 100]
     (let [n (inc n)]
       (prn (mapTo n)))))
@@ -39,17 +38,11 @@
 (def par {3 "fizz" 5 "buzz"})
 
 (defn fizzbuzz-4[]
-  (defn special [n]
+  (defn fb [n]
     (defn divisible? [x] (zero? (rem n x)))
-    (defn mapSingle [entry]
-      (if (divisible? (entry 0)) (entry 1)))
-    (apply str (map mapSingle par)))
-  (defn mapTo[n]
-    (let [spec (special n)]
-      (if (empty? spec) n
-        spec)))
+    (defn mapSingle [[num word]] (if (divisible? num) word))
+    (let [spc (apply str (map mapSingle par))]
+      (if (empty? spc) n spc)))
   (dotimes [n 100]
     (let [n (inc n)]
-      (prn (mapTo n)))))
-
-
+      (prn (fb n)))))
