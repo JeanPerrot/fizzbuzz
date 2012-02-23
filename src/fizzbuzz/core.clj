@@ -46,3 +46,13 @@
   (dotimes [n 100]
     (let [n (inc n)]
       (prn (fb n)))))
+
+
+(defn fizzbuzz-5[]
+  (defn fb [n]
+    (defn divisible? [x] (zero? (rem n x)))
+    (defn mapSingle [[num word]] (if (divisible? num) word))
+    (let [spc (apply str (map mapSingle par))]
+      (if (empty? spc) n spc)))
+  (doseq [item (vec (map fb (range 1 100)))]
+    (prn item)))
